@@ -32,18 +32,20 @@ function renderVideos(i){
   videos.innerHTML="";
   playlists[i].videos.forEach(v=>{
     videos.innerHTML += `
-      <div class="card">
-        <div class="wm">JKT48 REPLAY</div>
-        <div class="yt-wrap">
-          <div class="yt-overlay"></div>
-          <iframe 
-  src="https://www.youtube-nocookie.com/embed/${v.video}?rel=0&modestbranding=1&iv_load_policy=3&playsinline=1"
-  allow="autoplay; encrypted-media; fullscreen"
-  allowfullscreen>
-</iframe>
-        </div>
-        <h3>${v.title}</h3>
-      </div>
+     <div class="card">
+  <div class="wm">JKT48 REPLAY</div>
+
+  <div class="yt-wrap">
+    <div class="yt-overlay"></div>
+    <iframe 
+      src="https://www.youtube-nocookie.com/embed/${v.video}?rel=0&modestbranding=1&iv_load_policy=3&playsinline=1"
+      allow="autoplay; encrypted-media; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <h3>${v.title}</h3>
+</div>
     `;
   });
 }
