@@ -16,10 +16,7 @@
 </div>
 
 <script src="data.js"></script>
-
 <script>
-console.log(playlists);
-
 const select = document.getElementById("playlistSelect");
 const videos = document.getElementById("videos");
 
@@ -37,7 +34,14 @@ function renderVideos(i){
     videos.innerHTML += `
       <div class="card">
         <div class="wm">JKT48 REPLAY</div>
-        <iframe src="https://www.youtube-nocookie.com/embed/${v.video}?rel=0" allowfullscreen></iframe>
+        <div class="yt-wrap">
+          <div class="yt-overlay"></div>
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/${v.video}?rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+        </div>
         <h3>${v.title}</h3>
       </div>
     `;
@@ -50,3 +54,4 @@ renderPlaylists();
 
 </body>
 </html>
+
