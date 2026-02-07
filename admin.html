@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Admin Panel</title>
+</head>
+<body>
+
+<script>
+if(localStorage.getItem("admin")!=="true"){
+  location.href="login.html";
+}
+</script>
+
+<header>
+  <h1>Admin Playlist</h1>
+  <button onclick="logout()">Logout</button>
+</header>
+
+<div class="admin-box">
+  <input id="plist" placeholder="Nama Playlist Baru">
+  <button onclick="addPlaylist()">Tambah Playlist</button>
+  <hr>
+  <select id="ps"></select>
+  <input id="title" placeholder="Judul Video">
+  <input id="vid" placeholder="YouTube Video ID">
+  <button onclick="addVideo()">Tambah Video</button>
+</div>
+
+<ul id="list"></ul>
+
+<script src="data.js"></script>
+<script>
+const ps=document.getElementById("ps");
+const list=document.getElementById("list");
+
+function save(){
+ localStorage.setItem("playlists",JSON.stringify(playlists));
+}
+
+function render(){
+ ps.innerHTML="";
+ playlists.forEach((p,i)=>ps.innerHTML+=`<option value="${i}">${p.name}</option>`);
+ list.innerHTML="";
+ playlists[ps.value]?.videos.forEach((v,i)=>{
+  list.innerHTML+=`<li>${v.title} <button onclick="del(${i})">Hapus</button></li>`;
+ });
+ save();
+}
+
+function addPlaylist(){
+ playlists.push({name:plist.value,videos:[]});
+ plist.value="";
+ render();
+}
+
+function addVideo(){
+ playlists[ps.value].videos.push({title:title.value,video:vid.value});
+ title.value=vid.value="";
+ render();
+}
+
+function del(i){
+ playlists[ps.value].videos.splice(i,1);
+ render();
+}
+
+function logout(){
+ localStorage.removeItem("admin");
+ location.href="index.html";
+}
+
+ps.onchange=render;
+render();
+</script>
+</body>
+</html>
