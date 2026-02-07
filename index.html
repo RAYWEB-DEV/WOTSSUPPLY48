@@ -16,7 +16,10 @@
 </div>
 
 <script src="data.js"></script>
+
 <script>
+console.log(playlists);
+
 const select = document.getElementById("playlistSelect");
 const videos = document.getElementById("videos");
 
@@ -44,5 +47,6 @@ function renderVideos(i){
 select.onchange = ()=>renderVideos(select.value);
 renderPlaylists();
 </script>
+
 </body>
 </html>
